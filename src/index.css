@@ -11,3 +11,9 @@
 		@apply block border-b-2 border-b-white my-3  focus:outline-none bg-transparent focus:border-b-white w-96 p-1 text-white placeholder:text-slate-500;
 	}
 }
+
+@layer base {
+	body {
+		@apply bg-slate-50;
+	}
+}

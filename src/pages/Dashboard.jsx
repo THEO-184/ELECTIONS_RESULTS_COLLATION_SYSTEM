@@ -1,12 +1,12 @@
 import React from "react";
 import Wrapper from "../components/Wrapper";
 
-const Home = () => {
+const Dashboard = () => {
 	return (
 		<Wrapper>
-			<div className="">Home</div>
+			<div className="">Dashboard</div>
 		</Wrapper>
 	);
 };
 
-export default Home;
+export default Dashboard;

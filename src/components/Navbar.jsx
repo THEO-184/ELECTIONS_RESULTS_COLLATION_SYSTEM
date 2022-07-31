@@ -16,10 +16,12 @@ const Navbar = () => {
 	return (
 		<header className="fixed top-0 left-0 w-screen h-16 bg-color text-white">
 			<nav className="w-11/12 h-full flex justify-between items-center  mx-auto">
-				<div className="font-bold">PROJECT</div>
+				<Link to={"/"}>
+					<div className="font-bold">PROJECT</div>
+				</Link>
 				<ul className="list-none flex items-center w-2/3 sm:w-1/3 mx-auto justify-center sm:justify-between">
 					{[
-						["Home", "/"],
+						["Submit Results", "/results"],
 						["Dashboard", "/dashboard"],
 						["Profile", "/profile"],
 						["Settings", "/settings"],
@@ -38,7 +40,7 @@ const Navbar = () => {
 							sign out
 						</button>
 					) : (
-						<Link to={"/sign-up"} className="">
+						<Link to={"/"} className="">
 							<li className="mr-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-lg w-24 h-8 flex justify-center items-center">
 								Login
 							</li>

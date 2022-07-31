@@ -76,9 +76,6 @@ const Login = () => {
 		}
 	}, [cardId, password]);
 
-	if (userId.length) {
-		return <Navigate to={"/"} />;
-	}
 	return (
 		<div>
 			<div className="w-full flex items-center justify-center h-screen bg-[url('/public/loginImg.jpg')] bg-cover bg-no-repeat bg-center text-white">
