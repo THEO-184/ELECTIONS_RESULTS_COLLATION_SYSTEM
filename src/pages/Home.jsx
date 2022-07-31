@@ -1,7 +1,12 @@
 import React from "react";
+import Wrapper from "../components/Wrapper";
 
 const Home = () => {
-	return <div className="absolute top-16 left-0">Home</div>;
+	return (
+		<Wrapper>
+			<div className="">Home</div>
+		</Wrapper>
+	);
 };
 
 export default Home;
