@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+// local imports
+import { addUser } from "../../redux/slices/auth.slice";
 
 const Login = () => {
+	const dispatch = useDispatch();
+	const userId = useSelector((state) => state.user.user.id);
+	console.log(userId);
 	const [cardId, setCardId] = useState("");
 	const [password, setPassword] = useState("");
-	const [isEmptyForm, setiSEmptyForm] = useState(false);
 	const [error, setError] = useState({
 		cardIdErr: {
 			isError: false,
@@ -18,7 +24,11 @@ const Login = () => {
 	// submit details
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
-		console.log(cardId, password);
+		dispatch(
+			addUser({
+				id: cardId,
+			})
+		);
 	};
 
 	useEffect(() => {
@@ -65,6 +75,10 @@ const Login = () => {
 			});
 		}
 	}, [cardId, password]);
+
+	if (userId.length) {
+		return <Navigate to={"/"} />;
+	}
 	return (
 		<div>
 			<div className="w-full flex items-center justify-center h-screen bg-[url('/public/loginImg.jpg')] bg-cover bg-no-repeat bg-center text-white">
