@@ -1,26 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	collationType: 1,
-	electionType: 1,
+	collationType: 0,
+	electionType: 0,
+	constituencyType: 0,
+	constituencyName: "",
 	constituencyRecords: [
 		{
 			A: 0,
+			id: 0,
 		},
 		{
 			B: 0,
+			id: 1,
 		},
 		{
 			C: 0,
+			id: 2,
 		},
 		{
 			D: 0,
+			id: 3,
 		},
 		{
 			E: 0,
+			id: 4,
 		},
 		{
 			F: 0,
+			id: 5,
 		},
 	],
 };
@@ -28,9 +36,20 @@ const initialState = {
 const results = createSlice({
 	name: "results",
 	initialState,
-	reducers: {},
+	reducers: {
+		setCollationType: (state, action) => {
+			state.collationType = action.payload;
+		},
+		setElectionType: (state, action) => {
+			state.electionType = action.payload;
+		},
+		setConstituencyType: (state, action) => {
+			state.constituencyType = action.payload;
+		},
+	},
 });
 
-export const {} = results.actions;
+export const { setCollationType, setElectionType, setConstituencyType } =
+	results.actions;
 
 export default results.reducer;

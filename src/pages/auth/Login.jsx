@@ -29,6 +29,8 @@ const Login = () => {
 				id: cardId,
 			})
 		);
+		setCardId("");
+		setPassword("");
 	};
 
 	useEffect(() => {

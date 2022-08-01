@@ -1,26 +1,49 @@
 export const electionInfo = [
 	{
 		name: "presidential",
-		id: 1,
+		id: 0,
 	},
 	{
 		name: "parliamentary",
-		id: 2,
+		id: 1,
 	},
 ];
 
 export const collationInfo = [
 	{
 		name: "constituency",
-		id: 1,
+		id: 0,
 	},
 	{
 		name: "regional",
-		id: 2,
+		id: 1,
 	},
 	{
 		name: "national",
+		id: 2,
+	},
+];
+
+export const constituencyInfo = [
+	{
+		name: "NC",
+		id: 0,
+	},
+	{
+		name: "CP",
+		id: 1,
+	},
+	{
+		name: "BE",
+		id: 2,
+	},
+	{
+		name: "BC",
 		id: 3,
+	},
+	{
+		name: "PS",
+		id: 4,
 	},
 ];
 
