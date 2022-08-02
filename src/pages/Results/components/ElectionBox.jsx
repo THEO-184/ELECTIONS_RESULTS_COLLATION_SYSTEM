@@ -7,8 +7,8 @@ const ElectionBox = (props) => {
 		list1Title,
 		list2Title,
 		list2,
-		handleSelectElectionType,
-		handleSelectCollationType,
+		handleFirstList,
+		handleSecondList,
 		list2Ids,
 		list1Ids,
 	} = props;
@@ -19,22 +19,24 @@ const ElectionBox = (props) => {
 					<p className="mb-4  italic text-blue-800 font-bold text-xl">
 						{list1Title}
 					</p>
-					{list1.map((election, id) => {
-						return (
-							<label className="radio" htmlFor={election.name} key={id}>
-								{capitalize(election.name)}
-								<input
-									type="radio"
-									value={election.name}
-									name="election_type"
-									id={election.name}
-									checked={list1Ids == id}
-									onChange={() => handleSelectElectionType(id)}
-								/>
-								<div className="radio-btn"></div>
-							</label>
-						);
-					})}
+					<div className="flex items-center justify-between w-full">
+						{list1.map((election, id) => {
+							return (
+								<label className="radio" htmlFor={election.name} key={id}>
+									{capitalize(election.name)}
+									<input
+										type="radio"
+										value={election.name}
+										name="election_type"
+										id={election.name}
+										checked={list1Ids == id}
+										onChange={() => handleFirstList(id)}
+									/>
+									<span className="radio-btn"></span>
+								</label>
+							);
+						})}
+					</div>
 				</div>
 			)}
 
@@ -53,9 +55,9 @@ const ElectionBox = (props) => {
 									id={collation.name}
 									value={collation.name}
 									checked={list2Ids == id}
-									onChange={() => handleSelectCollationType(id)}
+									onChange={() => handleSecondList(id)}
 								/>
-								<div className="radio-btn"></div>
+								<span className="radio-btn"></span>
 							</label>
 						);
 					})}

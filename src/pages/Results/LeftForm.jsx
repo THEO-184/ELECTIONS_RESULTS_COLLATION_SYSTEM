@@ -26,8 +26,8 @@ const LeftForm = (props) => {
 				list1Title={electionTitle}
 				list2Title={collationTitle}
 				list2={collationInfo}
-				handleSelectElectionType={handleSelectElectionType}
-				handleSelectCollationType={handleSelectCollationType}
+				handleFirstList={handleSelectElectionType}
+				handleSecondList={handleSelectCollationType}
 				list2Ids={collationType}
 				list1Ids={electionType}
 			/>

@@ -1,23 +1,45 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setConstituencyType } from "../../redux/slices/results.slice";
+import {
+	setConstituencyType,
+	setRegionType,
+} from "../../redux/slices/results.slice";
 import ElectionBox from "./components/ElectionBox";
 
 const RightForm = (props) => {
-	const { constituencyType } = useSelector((state) => state.results);
+	const {
+		electionInfo,
+		electionTitle,
+		regionOrConstituency,
+		poolingStationTitle,
+		poolingStationInfo,
+	} = props;
+	const { constituencyType, regionType } = useSelector(
+		(state) => state.results
+	);
 	const dispatch = useDispatch();
-	const { electionInfo, electionTitle } = props;
+
 	const handleSelectConstituencyType = (id) => {
-		dispatch(setConstituencyType(id));
+		if (regionOrConstituency === 0) {
+			dispatch(setConstituencyType(id));
+		} else {
+			dispatch(setRegionType(id));
+		}
+	};
+
+	const checkForListIds = () => {
+		return regionOrConstituency === 0 ? constituencyType : regionType;
 	};
 
 	return (
 		<div className="bg-white">
 			<ElectionBox
 				list1={electionInfo}
-				list1Ids={constituencyType}
+				list1Ids={checkForListIds()}
 				list1Title={electionTitle}
-				handleSelectElectionType={handleSelectConstituencyType}
+				handleFirstList={handleSelectConstituencyType}
+				list2={poolingStationInfo}
+				list2Title={poolingStationTitle}
 			/>
 		</div>
 	);

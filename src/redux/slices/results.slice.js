@@ -5,6 +5,7 @@ const initialState = {
 	electionType: 0,
 	constituencyType: 0,
 	constituencyName: "",
+	regionType: 0,
 	constituencyRecords: [
 		{
 			A: 0,
@@ -46,10 +47,17 @@ const results = createSlice({
 		setConstituencyType: (state, action) => {
 			state.constituencyType = action.payload;
 		},
+		setRegionType: (state, action) => {
+			state.regionType = action.payload;
+		},
 	},
 });
 
-export const { setCollationType, setElectionType, setConstituencyType } =
-	results.actions;
+export const {
+	setCollationType,
+	setElectionType,
+	setConstituencyType,
+	setRegionType,
+} = results.actions;
 
 export default results.reducer;

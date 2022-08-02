@@ -6,6 +6,8 @@ import {
 	collationInfo,
 	constituencyInfo,
 	electionInfo,
+	poolingStations,
+	regionalInfo,
 } from "../../utils/formUtils";
 import LeftForm from "./LeftForm";
 import RightForm from "./RightForm";
@@ -13,15 +15,21 @@ import RightForm from "./RightForm";
 const Results = () => {
 	const collationType = useSelector((state) => state.results.collationType);
 	const [resultsType, setResultsType] = useState([]);
+	const [title, setTitle] = useState("");
+	const [regionOrConstituency, setRegionOrConstituency] = useState(0);
 
 	useEffect(() => {
 		switch (collationType) {
 			case 0:
 				setResultsType(constituencyInfo);
+				setTitle("Constituency Results");
+				setRegionOrConstituency(0);
 				break;
-
 			default:
-				setResultsType(constituencyInfo);
+				setResultsType(regionalInfo);
+				setTitle("Regional Results");
+				setRegionOrConstituency(1);
+
 				break;
 		}
 	}, [collationType]);
@@ -38,7 +46,10 @@ const Results = () => {
 					/>
 					<RightForm
 						electionInfo={resultsType}
-						electionTitle={"Constituency Results"}
+						electionTitle={title}
+						regionOrConstituency={regionOrConstituency}
+						poolingStationTitle={"Pooling Stations"}
+						poolingStationInfo={poolingStations}
 					/>
 				</div>
 			</div>
