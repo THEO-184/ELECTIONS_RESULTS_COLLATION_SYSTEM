@@ -7,7 +7,6 @@ import { addUser } from "../../redux/slices/auth.slice";
 const Login = () => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.user.user.id);
-	console.log(userId);
 	const [cardId, setCardId] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState({
@@ -77,6 +76,10 @@ const Login = () => {
 			});
 		}
 	}, [cardId, password]);
+
+	if (userId) {
+		return <Navigate to={"/results"} />;
+	}
 
 	return (
 		<div>

@@ -12,7 +12,7 @@
 	}
 	/* Customize the label (the container) */
 	.radio {
-		@apply block relative pl-9 mb-3 cursor-pointer text-lg select-none;
+		@apply relative pl-9 mb-3 cursor-pointer text-lg select-none;
 	}
 	/* Hide the browser's default radio button */
 

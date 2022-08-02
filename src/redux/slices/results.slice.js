@@ -6,29 +6,36 @@ const initialState = {
 	constituencyType: 0,
 	constituencyName: "",
 	regionType: 0,
+	poolingStationType: 0,
 	constituencyRecords: [
 		{
-			A: 0,
+			name: "A",
+			sum: 0,
 			id: 0,
 		},
 		{
-			B: 0,
+			name: "B",
+			sum: 0,
 			id: 1,
 		},
 		{
-			C: 0,
+			name: "C",
+			sum: 0,
 			id: 2,
 		},
 		{
-			D: 0,
+			name: "D",
+			sum: 0,
 			id: 3,
 		},
 		{
-			E: 0,
+			name: "E",
+			sum: 0,
 			id: 4,
 		},
 		{
-			F: 0,
+			name: "F",
+			sum: 0,
 			id: 5,
 		},
 	],
@@ -50,6 +57,20 @@ const results = createSlice({
 		setRegionType: (state, action) => {
 			state.regionType = action.payload;
 		},
+		setPoolingStationType: (state, action) => {
+			state.poolingStationType = action.payload;
+		},
+		saveConstituencyResults: (state, action) => {
+			state.constituencyRecords = action.payload.map((candidate) => {
+				let newRecord = {};
+				state.constituencyRecords.forEach((record) => {
+					if (candidate.id === record.id) {
+						newRecord = { ...record, sum: candidate.sum, id: candidate.id };
+					}
+				});
+				return newRecord;
+			});
+		},
 	},
 });
 
@@ -58,6 +79,8 @@ export const {
 	setElectionType,
 	setConstituencyType,
 	setRegionType,
+	setPoolingStationType,
+	saveConstituencyResults,
 } = results.actions;
 
 export default results.reducer;

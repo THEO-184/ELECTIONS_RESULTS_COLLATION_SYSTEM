@@ -13,16 +13,20 @@ const ElectionBox = (props) => {
 		list1Ids,
 	} = props;
 	return (
-		<form className="flex flex-col items-center justify-center w-full h-full">
+		<form className="flex flex-col items-center w-full h-auto p-4">
 			{list1 && (
-				<div className="">
+				<div className="w-11/12 mt-6 mx-auto">
 					<p className="mb-4  italic text-blue-800 font-bold text-xl">
 						{list1Title}
 					</p>
 					<div className="flex items-center justify-between w-full">
 						{list1.map((election, id) => {
 							return (
-								<label className="radio" htmlFor={election.name} key={id}>
+								<div
+									className="radio flex items-center"
+									htmlFor={election.name}
+									key={id}
+								>
 									{capitalize(election.name)}
 									<input
 										type="radio"
@@ -33,7 +37,7 @@ const ElectionBox = (props) => {
 										onChange={() => handleFirstList(id)}
 									/>
 									<span className="radio-btn"></span>
-								</label>
+								</div>
 							);
 						})}
 					</div>
@@ -41,26 +45,32 @@ const ElectionBox = (props) => {
 			)}
 
 			{list2 && (
-				<div className="mb-4">
+				<div className="my-6 w-11/12 mx-auto">
 					<p className="mb-4 italic text-blue-800 font-bold text-xl">
 						{list2Title}
 					</p>
-					{list2.map((collation, id) => {
-						return (
-							<label className="radio" htmlFor={collation.name} key={id}>
-								{capitalize(collation.name)}
-								<input
-									type="radio"
-									name="collation_type"
-									id={collation.name}
-									value={collation.name}
-									checked={list2Ids == id}
-									onChange={() => handleSecondList(id)}
-								/>
-								<span className="radio-btn"></span>
-							</label>
-						);
-					})}
+					<div className="flex items-center justify-between w-full">
+						{list2.map((collation, id) => {
+							return (
+								<div
+									className="radio flex items-center"
+									htmlFor={collation.name}
+									key={id}
+								>
+									{capitalize(collation.name)}
+									<input
+										type="radio"
+										name="collation_type"
+										id={collation.name}
+										value={collation.name}
+										checked={list2Ids == id}
+										onChange={() => handleSecondList(id)}
+									/>
+									<span className="radio-btn"></span>
+								</div>
+							);
+						})}
+					</div>
 				</div>
 			)}
 		</form>
