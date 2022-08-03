@@ -10,41 +10,6 @@
 	.login-input {
 		@apply block border-b-2 border-b-white my-3  focus:outline-none bg-transparent focus:border-b-white w-96 p-1 text-white placeholder:text-slate-500;
 	}
-	/* Customize the label (the container) */
-	.radio {
-		@apply relative pl-9 mb-3 cursor-pointer text-lg select-none;
-	}
-	/* Hide the browser's default radio button */
-
-	.radio input {
-		@apply absolute opacity-0 cursor-pointer;
-	}
-	/* Create a custom radio button */
-
-	.radio-btn {
-		@apply absolute top-0 left-0 h-6 w-6 bg-slate-200 rounded-full;
-	}
-	/* On mouse-over, add a grey background color */
-	.radio:hover input ~ .radio-btn {
-		@apply bg-slate-300;
-	}
-	/* When the radio button is checked, add a blue background */
-	.radio input:checked ~ .radio-btn {
-		@apply bg-blue-500;
-	}
-	/* Create the indicator (the dot/circle - hidden when not checked) */
-	.radio-btn {
-		@apply after:content-[""] after:absolute after:hidden;
-	}
-
-	/* Show the indicator (dot/circle) when checked */
-	.radio input:checked ~ .radio-btn:after {
-		@apply block;
-	}
-
-	.radio .radio-btn {
-		@apply after:top-2 after:left-2 after:w-2 after:h-2 after:rounded-full after:bg-white;
-	}
 }
 
 @layer base {

@@ -1,44 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	collationType: 0,
-	electionType: 0,
-	constituencyType: 0,
+	collationType: "",
+	electionType: "",
+	constituencyType: "nr",
 	constituencyName: "",
-	regionType: 0,
-	poolingStationType: 0,
-	constituencyRecords: [
-		{
-			name: "A",
-			sum: 0,
-			id: 0,
-		},
-		{
-			name: "B",
-			sum: 0,
-			id: 1,
-		},
-		{
-			name: "C",
-			sum: 0,
-			id: 2,
-		},
-		{
-			name: "D",
-			sum: 0,
-			id: 3,
-		},
-		{
-			name: "E",
-			sum: 0,
-			id: 4,
-		},
-		{
-			name: "F",
-			sum: 0,
-			id: 5,
-		},
-	],
+	regionType: "",
+	poolingStationType: "",
+	constituencyRecords: [],
+	regionalRecords: [],
+	nationalRecords: [],
 };
 
 const results = createSlice({
@@ -61,15 +32,13 @@ const results = createSlice({
 			state.poolingStationType = action.payload;
 		},
 		saveConstituencyResults: (state, action) => {
-			state.constituencyRecords = action.payload.map((candidate) => {
-				let newRecord = {};
-				state.constituencyRecords.forEach((record) => {
-					if (candidate.id === record.id) {
-						newRecord = { ...record, sum: candidate.sum, id: candidate.id };
-					}
-				});
-				return newRecord;
-			});
+			state.constituencyRecords = action.payload;
+		},
+		saveRegionalResults: (state, action) => {
+			state.regionalRecords = action.payload;
+		},
+		saveNationalResults: (state, action) => {
+			state.nationalRecords = action.payload;
 		},
 	},
 });
@@ -81,6 +50,8 @@ export const {
 	setRegionType,
 	setPoolingStationType,
 	saveConstituencyResults,
+	saveRegionalResults,
+	saveNationalResults,
 } = results.actions;
 
 export default results.reducer;

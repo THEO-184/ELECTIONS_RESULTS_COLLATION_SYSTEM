@@ -19,24 +19,21 @@ const ElectionBox = (props) => {
 					<p className="mb-4  italic text-blue-800 font-bold text-xl">
 						{list1Title}
 					</p>
-					<div className="flex items-center justify-between w-full">
+					<div className="flex items-center justify-between w-full flex-wrap">
 						{list1.map((election, id) => {
 							return (
-								<div
-									className="radio flex items-center"
-									htmlFor={election.name}
-									key={id}
-								>
-									{capitalize(election.name)}
+								<div key={id} className="flex flex-nowrap w-28 my-2">
 									<input
 										type="radio"
-										value={election.name}
 										name="election_type"
 										id={election.name}
-										checked={list1Ids == id}
-										onChange={() => handleFirstList(id)}
+										value={election.name}
+										checked={list1Ids == election.name.toLowerCase()}
+										onChange={() => handleFirstList(election.name)}
 									/>
-									<span className="radio-btn"></span>
+									<label className="inline-block ml-2" htmlFor={election.name}>
+										{capitalize(election.name)}
+									</label>
 								</div>
 							);
 						})}
@@ -49,24 +46,25 @@ const ElectionBox = (props) => {
 					<p className="mb-4 italic text-blue-800 font-bold text-xl">
 						{list2Title}
 					</p>
-					<div className="flex items-center justify-between w-full">
+					<div className="flex items-center justify-between w-full flex-wrap">
 						{list2.map((collation, id) => {
 							return (
-								<div
-									className="radio flex items-center"
-									htmlFor={collation.name}
-									key={id}
-								>
-									{capitalize(collation.name)}
+								<div key={id} className="flex flex-nowrap w-28 my-2">
 									<input
 										type="radio"
 										name="collation_type"
 										id={collation.name}
 										value={collation.name}
-										checked={list2Ids == id}
-										onChange={() => handleSecondList(id)}
+										checked={list2Ids == collation.name.toLowerCase()}
+										onChange={() => handleSecondList(collation.name)}
 									/>
-									<span className="radio-btn"></span>
+									<label
+										className="inline-block ml-2"
+										htmlFor={collation.name}
+										key={id}
+									>
+										{capitalize(collation.name)}
+									</label>
 								</div>
 							);
 						})}

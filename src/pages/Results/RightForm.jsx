@@ -5,6 +5,8 @@ import {
 	setRegionType,
 	setPoolingStationType,
 	saveConstituencyResults,
+	saveNationalResults,
+	saveRegionalResults,
 } from "../../redux/slices/results.slice";
 import { candidates } from "../../utils/formUtils";
 import ElectionBox from "./components/ElectionBox";
@@ -21,41 +23,47 @@ const RightForm = (props) => {
 		useSelector((state) => state.results);
 
 	const [A, setA] = useState({
+		name: "A",
 		id: 0,
 		sum: null,
 	});
 	const [B, setB] = useState({
+		name: "B",
 		id: 1,
 		sum: null,
 	});
 	const [C, setC] = useState({
+		name: "C",
 		id: 2,
 		sum: null,
 	});
 	const [D, setD] = useState({
+		name: "D",
 		id: 3,
 		sum: null,
 	});
 	const [E, setE] = useState({
+		name: "E",
 		id: 4,
 		sum: null,
 	});
 	const [F, setF] = useState({
-		id: 4,
+		name: "F",
+		id: 5,
 		sum: null,
 	});
 	const dispatch = useDispatch();
 
 	const handleSelectConstituencyType = (id) => {
 		if (regionOrConstituency === 0) {
-			dispatch(setConstituencyType(id));
+			dispatch(setConstituencyType(id.toLowerCase()));
 		} else {
-			dispatch(setRegionType(id));
+			dispatch(setRegionType(id.toLowerCase()));
 		}
 	};
 
 	const handleSelectPoolingStation = (id) => {
-		dispatch(setPoolingStationType(id));
+		dispatch(setPoolingStationType(id.toLowerCase()));
 	};
 
 	const checkForList1Ids = () => {
@@ -65,22 +73,34 @@ const RightForm = (props) => {
 	const handleSetNumber = (e, id) => {
 		switch (id) {
 			case 0:
-				setA({ id, sum: e.target.value });
+				setA((prev) => {
+					return { ...prev, sum: e.target.value };
+				});
 				break;
 			case 1:
-				setB({ id, sum: e.target.value });
+				setB((prev) => {
+					return { ...prev, sum: e.target.value };
+				});
 				break;
 			case 2:
-				setC({ id, sum: e.target.value });
+				setC((prev) => {
+					return { ...prev, sum: e.target.value };
+				});
 				break;
 			case 3:
-				setD({ id, sum: e.target.value });
+				setD((prev) => {
+					return { ...prev, sum: e.target.value };
+				});
 				break;
 			case 4:
-				setE({ id, sum: e.target.value });
+				setE((prev) => {
+					return { ...prev, sum: e.target.value };
+				});
 				break;
 			case 5:
-				setF({ id, sum: e.target.value });
+				setF((prev) => {
+					return { ...prev, sum: e.target.value };
+				});
 				break;
 			default:
 				break;
@@ -95,7 +115,11 @@ const RightForm = (props) => {
 				alert("Please provide value for all fields");
 			}
 		});
-		if (collationType === 0) {
+		if (collationType === "regional") {
+			dispatch(saveRegionalResults(overAllResults));
+		} else if (collationType === "national") {
+			dispatch(saveNationalResults(overAllResults));
+		} else {
 			dispatch(saveConstituencyResults(overAllResults));
 		}
 		console.log(overAllResults, collationType);

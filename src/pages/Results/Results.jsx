@@ -20,11 +20,12 @@ const Results = () => {
 
 	useEffect(() => {
 		switch (collationType) {
-			case 0:
+			case "constituency":
 				setResultsType(constituencyInfo);
 				setTitle("Constituency Results");
 				setRegionOrConstituency(0);
 				break;
+
 			default:
 				setResultsType(regionalInfo);
 				setTitle("Regional Results");
@@ -37,7 +38,7 @@ const Results = () => {
 	return (
 		<Wrapper>
 			<div className="w-full h-full flex items-center justify-center">
-				<div className="w-2/3 h-5/6 m-auto grid bg-gradient-to-b from-blue-400 to-violet-400 grid-cols-2 gap-3 rounded-lg shadow-md shadow-neutral-500">
+				<div className="w-2/3 h-auto sm:h-5/6 m-auto sm:grid  sm:grid-cols-2 sm:gap-3 rounded-lg shadow-md shadow-neutral-500">
 					<LeftForm
 						electionInfo={electionInfo}
 						electionTitle={"Election Type"}

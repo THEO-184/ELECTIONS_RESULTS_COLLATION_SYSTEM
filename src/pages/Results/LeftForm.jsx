@@ -12,11 +12,11 @@ const LeftForm = (props) => {
 	const { collationType, electionType } = useSelector((state) => state.results);
 
 	const handleSelectElectionType = (id) => {
-		dispatch(setElectionType(id));
+		dispatch(setElectionType(id.toLowerCase()));
 	};
 
 	const handleSelectCollationType = (id) => {
-		dispatch(setCollationType(id));
+		dispatch(setCollationType(id.toLowerCase()));
 	};
 
 	return (
