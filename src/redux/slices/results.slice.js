@@ -7,9 +7,20 @@ const initialState = {
 	constituencyName: "",
 	regionType: "",
 	poolingStationType: "",
-	constituencyRecords: [],
-	regionalRecords: [],
-	nationalRecords: [],
+	constituencyRecords: {
+		Results: [],
+		constituencyType: "",
+		poolingStationType: "",
+	},
+	regionalRecords: {
+		Results: [],
+		regionType: "",
+		constituencyType: "",
+	},
+	nationalRecords: {
+		Results: [],
+		regionType: "",
+	},
 };
 
 const results = createSlice({
@@ -24,21 +35,25 @@ const results = createSlice({
 		},
 		setConstituencyType: (state, action) => {
 			state.constituencyType = action.payload;
+			state.constituencyRecords.constituencyType = action.payload;
+			state.regionalRecords.constituencyType = action.payload;
 		},
 		setRegionType: (state, action) => {
 			state.regionType = action.payload;
+			state.regionalRecords.regionType = action.payload;
 		},
 		setPoolingStationType: (state, action) => {
 			state.poolingStationType = action.payload;
+			state.constituencyRecords.poolingStationType = action.payload;
 		},
 		saveConstituencyResults: (state, action) => {
-			state.constituencyRecords = action.payload;
+			state.constituencyRecords.Results = action.payload;
 		},
 		saveRegionalResults: (state, action) => {
-			state.regionalRecords = action.payload;
+			state.regionalRecords.Results = action.payload;
 		},
 		saveNationalResults: (state, action) => {
-			state.nationalRecords = action.payload;
+			state.nationalRecords.Results = action.payload;
 		},
 	},
 });

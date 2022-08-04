@@ -22,36 +22,39 @@ const RightForm = (props) => {
 	const { constituencyType, regionType, poolingStationType, collationType } =
 		useSelector((state) => state.results);
 
-	const [A, setA] = useState({
-		name: "A",
-		id: 0,
-		sum: null,
-	});
-	const [B, setB] = useState({
-		name: "B",
-		id: 1,
-		sum: null,
-	});
-	const [C, setC] = useState({
-		name: "C",
-		id: 2,
-		sum: null,
-	});
-	const [D, setD] = useState({
-		name: "D",
-		id: 3,
-		sum: null,
-	});
-	const [E, setE] = useState({
-		name: "E",
-		id: 4,
-		sum: null,
-	});
-	const [F, setF] = useState({
-		name: "F",
-		id: 5,
-		sum: null,
-	});
+	const [candidatesResults, setCandiadtesResults] = useState([
+		{
+			name: "A",
+			id: 0,
+			sum: null,
+		},
+		{
+			name: "B",
+			id: 1,
+			sum: null,
+		},
+		{
+			name: "C",
+			id: 2,
+			sum: null,
+		},
+		{
+			name: "D",
+			id: 3,
+			sum: null,
+		},
+		{
+			name: "E",
+			id: 4,
+			sum: null,
+		},
+		{
+			name: "F",
+			id: 5,
+			sum: null,
+		},
+	]);
+
 	const dispatch = useDispatch();
 
 	const handleSelectConstituencyType = (id) => {
@@ -71,58 +74,30 @@ const RightForm = (props) => {
 	};
 
 	const handleSetNumber = (e, id) => {
-		switch (id) {
-			case 0:
-				setA((prev) => {
-					return { ...prev, sum: e.target.value };
-				});
-				break;
-			case 1:
-				setB((prev) => {
-					return { ...prev, sum: e.target.value };
-				});
-				break;
-			case 2:
-				setC((prev) => {
-					return { ...prev, sum: e.target.value };
-				});
-				break;
-			case 3:
-				setD((prev) => {
-					return { ...prev, sum: e.target.value };
-				});
-				break;
-			case 4:
-				setE((prev) => {
-					return { ...prev, sum: e.target.value };
-				});
-				break;
-			case 5:
-				setF((prev) => {
-					return { ...prev, sum: e.target.value };
-				});
-				break;
-			default:
-				break;
-		}
+		const addCandidatesResults = candidatesResults.map((candidate) => {
+			if (candidate.id === id) {
+				return { ...candidate, sum: e.target.value };
+			}
+			return candidate;
+		});
+		setCandiadtesResults(addCandidatesResults);
 	};
 
 	const handleSubmitResults = (e) => {
 		e.preventDefault();
-		const overAllResults = [A, B, C, D, E, F];
-		overAllResults.forEach((result) => {
+
+		candidatesResults.forEach((result) => {
 			if (!result.sum) {
 				alert("Please provide value for all fields");
 			}
 		});
 		if (collationType === "regional") {
-			dispatch(saveRegionalResults(overAllResults));
+			dispatch(saveRegionalResults(candidatesResults));
 		} else if (collationType === "national") {
-			dispatch(saveNationalResults(overAllResults));
+			dispatch(saveNationalResults(candidatesResults));
 		} else {
-			dispatch(saveConstituencyResults(overAllResults));
+			dispatch(saveConstituencyResults(candidatesResults));
 		}
-		console.log(overAllResults, collationType);
 	};
 
 	return (
