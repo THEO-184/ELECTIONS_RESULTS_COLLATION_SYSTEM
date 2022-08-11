@@ -41,19 +41,32 @@ const results = createSlice({
 		setRegionType: (state, action) => {
 			state.regionType = action.payload;
 			state.regionalRecords.regionType = action.payload;
+			state.nationalRecords.regionType = action.payload;
 		},
 		setPoolingStationType: (state, action) => {
 			state.poolingStationType = action.payload;
 			state.constituencyRecords.poolingStationType = action.payload;
 		},
 		saveConstituencyResults: (state, action) => {
-			state.constituencyRecords.Results = action.payload;
+			let result = action.payload;
+			state.constituencyRecords = {
+				...state.constituencyRecords,
+				Results: result,
+			};
 		},
 		saveRegionalResults: (state, action) => {
-			state.regionalRecords.Results = action.payload;
+			let result = action.payload;
+			state.regionalRecords = {
+				...state.regionalRecords,
+				Results: result,
+			};
 		},
 		saveNationalResults: (state, action) => {
-			state.nationalRecords.Results = action.payload;
+			let result = action.payload;
+			state.nationalRecords = {
+				...state.nationalRecords,
+				Results: result,
+			};
 		},
 	},
 });

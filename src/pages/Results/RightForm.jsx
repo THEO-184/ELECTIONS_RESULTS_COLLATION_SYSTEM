@@ -54,7 +54,12 @@ const RightForm = (props) => {
 			sum: null,
 		},
 	]);
-
+	const [showAlert, setShowAlert] = useState({
+		state: false,
+		message: "",
+		isSuccess: true,
+	});
+	const [isSuccess, setIsSuccess] = useState(true);
 	const dispatch = useDispatch();
 
 	const handleSelectConstituencyType = (id) => {
@@ -85,23 +90,52 @@ const RightForm = (props) => {
 
 	const handleSubmitResults = (e) => {
 		e.preventDefault();
+		let success = true;
 
 		candidatesResults.forEach((result) => {
 			if (!result.sum) {
-				alert("Please provide value for all fields");
+				success = false;
+				setShowAlert({
+					state: true,
+					message: "candiadates results must not be empty",
+					isSuccess: false,
+				});
+				setTimeout(() => {
+					setShowAlert(false);
+				}, 2000);
 			}
 		});
-		if (collationType === "regional") {
-			dispatch(saveRegionalResults(candidatesResults));
-		} else if (collationType === "national") {
-			dispatch(saveNationalResults(candidatesResults));
-		} else {
-			dispatch(saveConstituencyResults(candidatesResults));
+
+		if (success) {
+			if (collationType === "regional") {
+				dispatch(saveRegionalResults(candidatesResults));
+			} else if (collationType === "national") {
+				dispatch(saveNationalResults(candidatesResults));
+			} else {
+				dispatch(saveConstituencyResults(candidatesResults));
+			}
+			setShowAlert({
+				state: true,
+				message: "Results submitted successfully",
+				isSuccess: true,
+			});
+			setTimeout(() => {
+				setShowAlert(false);
+			}, 2000);
 		}
 	};
 
 	return (
 		<div className="bg-white">
+			{showAlert.state && (
+				<p
+					className={`fixed top-16 left-[40%] ${
+						showAlert.isSuccess ? "bg-green-500" : "bg-red-500"
+					} p-2 rounded-sm text-stone-100`}
+				>
+					{showAlert.message}
+				</p>
+			)}
 			<ElectionBox
 				list1={electionInfo}
 				list1Ids={checkForList1Ids()}
